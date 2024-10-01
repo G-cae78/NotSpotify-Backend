@@ -4,41 +4,42 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import com.ct5106.NotSpotifydb.domain.Artist;
 
 @Entity
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private String artistUserName, songs, releaseDate;
+    private Artist artist;
+    private String releaseDate;
     private int yearReleased, monthlylisteners;
 
     public Album() {
         super();
     }
 
-    public Album(String artistUserName, String songs, String releaseDate, int yearReleased, int monthlylisteners) {
-        this.artistUserName = artistUserName;
-        this.songs = songs;
+    public Album(Artist artist, String releaseDate, int yearReleased, int monthlylisteners) {
+        this.artist = artist;
         this.releaseDate = releaseDate;
         this.yearReleased = yearReleased;
         this.monthlylisteners = monthlylisteners;
     }
 
-    public void setArtistUserName(String artistUserName) {
-        this.artistUserName = artistUserName;
+    public void setArtist(Artist artist) {
+        this.artist = artist;
     }
 
     public int getMonthlylisteners() {
         return monthlylisteners;
     }
 
-    public void setSongs(String songs) {
-        this.songs = songs;
-    }
-
-    public String getSongs() {
-        return songs;
-    }
+//    public void setSongs(String songs) {
+//        this.songs = songs;
+//    }
+//
+//    public String getSongs() {
+//        return songs;
+//    }
 
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
