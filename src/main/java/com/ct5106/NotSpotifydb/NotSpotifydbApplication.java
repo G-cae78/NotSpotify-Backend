@@ -24,8 +24,10 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	@Override
 	public void run(String... args) throws Exception {
 		//Populating database
-		aRepo.save(new Artist("Drake","Arbery Graham","Mob Ties","Scorpion",2006,75000000));	//artists	
-		aRepo.save(new Artist("Mitski","Mitsuki Laycock","Geyser","Be The Cowboy",2006,22000000));
+		Artist drake= new Artist("Drake","Arbery Graham","Mob Ties","Scorpion",2006,75000000);
+		Artist mitski= new Artist("Mitski","Mitsuki Laycock","Geyser","Be The Cowboy",2006,22000000);
+		aRepo.save(drake);	//artists	
+		aRepo.save(mitski);
 		
 		//Fetching all cars and logging to console
 		for(Artist artist:aRepo.findAll()) {
