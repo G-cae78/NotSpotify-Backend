@@ -11,9 +11,10 @@ public class Artist {
 @GeneratedValue(strategy=GenerationType.AUTO)
 private Long id;
 // these other entity fields will be automatically mapped to the DB too
-private String artistUserName,realName,song,album;
+private String artistUserName,realName,song;
 private int yearJoined;
 private int monthlyListeners;
+public String album;
 
 public Artist() {
 	super();

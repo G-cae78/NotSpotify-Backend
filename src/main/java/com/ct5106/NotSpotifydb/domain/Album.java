@@ -18,7 +18,7 @@ public class Album {
 
     public Album(String artistUserName, String songs, String releaseDate, int yearReleased, int monthlylisteners) {
         this.artistUserName = artistUserName;
-        this.songs = songs;
+        this.songs=songs;
         this.releaseDate = releaseDate;
         this.yearReleased = yearReleased;
         this.monthlylisteners = monthlylisteners;
