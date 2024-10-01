@@ -10,7 +10,7 @@ import com.ct5106.NotSpotifydb.domain.Artist;
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Artist artist;
+    //private Artist artist;
     private String releaseDate;
     private int yearReleased, monthlylisteners;
 
@@ -18,8 +18,9 @@ public class Album {
         super();
     }
 
-    public Album(Artist artist, String releaseDate, int yearReleased, int monthlylisteners) {
-        this.artist = artist;
+    public Album(String artistUserName, String songs, String releaseDate, int yearReleased, int monthlylisteners) {
+        this.artistUserName = artistUserName;
+        this.songs=songs;
         this.releaseDate = releaseDate;
         this.yearReleased = yearReleased;
         this.monthlylisteners = monthlylisteners;
