@@ -1,4 +1,4 @@
-package com.ct5106.NotSpotifydb;
+package com.example.NotSpotifydb;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
