@@ -8,19 +8,59 @@ import jakarta.persistence.Id;
 @Entity
 public class Album {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private String artistUserName,songs,releaseDate;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private String artistUserName, songs, releaseDate;
     private int yearReleased, monthlylisteners;
 
-    public Album(){
+    public Album() {
         super();
     }
 
-    public Album(String artistUserName, String songs, String releaseDate, int yearReleased, int monthlylisteners){
+    public Album(String artistUserName, String songs, String releaseDate, int yearReleased, int monthlylisteners) {
         this.artistUserName = artistUserName;
         this.songs = songs;
         this.releaseDate = releaseDate;
         this.yearReleased = yearReleased;
         this.monthlylisteners = monthlylisteners;
+    }
+
+    public void setArtistUserName(String artistUserName) {
+        this.artistUserName = artistUserName;
+    }
+
+    public int getMonthlylisteners() {
+        return monthlylisteners;
+    }
+
+    public void setSongs(String songs) {
+        this.songs = songs;
+    }
+
+    public String getSongs() {
+        return songs;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setYearReleased(int yearReleased) {
+        this.yearReleased = yearReleased;
+    }
+
+    public int getYearReleased() {
+        return yearReleased;
+    }
+
+    public void setMonthlylisteners(int monthlylisteners) {
+        this.monthlylisteners = monthlylisteners;
+    }
+
+    public int getMonthlyListeners(){
+        return monthlylisteners;
     }
 }
