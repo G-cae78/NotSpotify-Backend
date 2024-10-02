@@ -16,6 +16,10 @@ public class AppUser {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long userId;
+	private String name;
+	private String email;
+	private String username;
+	private String dob;
 	
 	@OneToMany(cascade= CascadeType.ALL, mappedBy="user")
 	private List<UserPlaylist> playlists;
@@ -23,10 +27,13 @@ public class AppUser {
 	public AppUser() {
 		super();
 	}
-	String name;
 	
-	public AppUser(String name) {
+	
+	public AppUser(String name, String email, String username, String dob) {
 		this.name=name;
+		this.email=email;
+		this.username=username;
+		this.dob=dob;
 	}
 
 	public Long getUserId() {
@@ -51,6 +58,30 @@ public class AppUser {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getDOB() {
+		return dob;
+	}
+	
+	public void setDOB() {
+		this.dob=dob;
 	}
 //	@Override
 //	public String toString() {

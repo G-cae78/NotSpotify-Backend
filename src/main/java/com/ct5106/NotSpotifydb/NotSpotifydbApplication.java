@@ -46,7 +46,7 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		albumRepo.save(beTheCowboy);
 		
 
- 		AppUser Kelly= new AppUser("Kelly");
+ 		AppUser Kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", "16/05/2004");
      	userRepo.save(Kelly);
 
 //		
