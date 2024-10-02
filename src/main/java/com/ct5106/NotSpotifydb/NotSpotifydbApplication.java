@@ -37,6 +37,8 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		albumRepo.save(scorpion);
 		albumRepo.save(beTheCowboy);
 		
+		
+		
 		for(Album album : albumRepo.findAll()) {
 		    logger.info("Songs: {}, Release date: {}, Total Plays: {}", 
 		        album.getSongs(), 
@@ -49,5 +51,6 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	
 	public static void main(String[] args) {
 		SpringApplication.run(NotSpotifydbApplication.class, args);
+		logger.info("Application Started successfully");
 	}
 }
