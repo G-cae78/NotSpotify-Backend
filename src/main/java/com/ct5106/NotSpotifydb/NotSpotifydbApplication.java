@@ -65,12 +65,19 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		        album.getReleaseDate(), 
 		        album.getTotalPlays());
 		}
-		for(AppUser user : userRepo.findAll()) {
-		    logger.info("userName: {}", user.getName());
-		}
+		
+		for (AppUser user : userRepo.findAll()) {
+	        logger.info("Name: {}, Username: {}, DOB: {}, Email: {}", 
+	            user.getName(), 
+	            user.getUsername(), 
+	            user.getDOB(), 
+	            user.getEmail());
+	    }
+		
 		for(UserPlaylist playlist : playlistRepo.findAll()) {
 		    logger.info("Playlist Made By: {}, Playlist User: {}, Playlist Length: {}",playlist.getUser().getName(),playlist.getPlaylistName(), playlist.getPlaylistLength());
 		}
+		
 		
 	}
 
