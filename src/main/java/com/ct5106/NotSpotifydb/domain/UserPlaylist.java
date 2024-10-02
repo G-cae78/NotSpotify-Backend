@@ -1,5 +1,5 @@
-package com.ct5106.NotSpotifydb.domain;
 
+package com.ct5106.NotSpotifydb.domain;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -10,27 +10,26 @@ import jakarta.persistence.ManyToOne;
 
 
 @Entity
-public class Playlist {
+public class UserPlaylist {
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    private Long playlistId;
+    
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long playlistId;
-
-	private String playlistName;
-	private String songs;
-	private float playlistLength;
-	
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="user")
-	private AppUser user;
+	private String playlistName,songs;
+    private String playlistLength;
+    
+   @ManyToOne(fetch= FetchType.EAGER)
+   @JoinColumn(name="appuser") // use snake case to match common database conventions
+   private AppUser user;
 	
 	
-	public Playlist(){
+	public UserPlaylist(){
 		super();
 		
 	}
 	
-	public Playlist(String playlistName,String songs, float playlistLength,AppUser user) {
+	public UserPlaylist(String playlistName,String songs, String playlistLength,AppUser user) {
 		super();
 		this.playlistName=playlistName;
 		this.songs=songs;
@@ -68,11 +67,11 @@ public class Playlist {
 		this.songs = songs;
 	}
 
-	public float getPlaylistLength() {
+	public String getPlaylistLength() {
 		return playlistLength;
 	}
 
-	public void setPlaylistLength(float playlistLength) {
+	public void setPlaylistLength(String playlistLength) {
 		this.playlistLength = playlistLength;
 	}
 	

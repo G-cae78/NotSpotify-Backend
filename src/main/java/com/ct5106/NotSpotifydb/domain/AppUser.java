@@ -18,7 +18,7 @@ public class AppUser {
 	private Long userId;
 	
 	@OneToMany(cascade= CascadeType.ALL, mappedBy="user")
-	private List<Playlist> playlists;
+	private List<UserPlaylist> playlists;
 	
 	public AppUser() {
 		super();
@@ -33,7 +33,7 @@ public class AppUser {
 		return userId;
 	}
 
-	public List<Playlist> getPlaylists() {
+	public List<UserPlaylist> getPlaylists() {
 	return playlists;
 	}
 //
@@ -52,5 +52,10 @@ public class AppUser {
 	public void setName(String name) {
 		this.name = name;
 	}
+//	@Override
+//	public String toString() {
+//	    return "Playlist By " + name + "'}";
+//	}
+
 
 }
