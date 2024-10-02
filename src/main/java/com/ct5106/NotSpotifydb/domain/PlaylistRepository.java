@@ -1,5 +1,7 @@
 package com.ct5106.NotSpotifydb.domain;
 
-public interface PlaylistRepository {
+import org.springframework.data.repository.CrudRepository;
+
+public interface PlaylistRepository extends CrudRepository<Playlist, Long>{
 
 }
