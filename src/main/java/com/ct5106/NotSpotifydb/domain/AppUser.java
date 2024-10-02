@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany;
 
 
 @Entity
-public class User {
+public class AppUser {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long userId;
@@ -20,12 +20,12 @@ public class User {
 	@OneToMany(cascade= CascadeType.ALL, mappedBy="user")
 	private List<Playlist> playlists;
 	
-	public User() {
+	public AppUser() {
 		super();
 	}
 	String name;
 	
-	public User(String name) {
+	public AppUser(String name) {
 		this.name=name;
 	}
 
@@ -34,12 +34,12 @@ public class User {
 	}
 
 	public List<Playlist> getPlaylists() {
-		return playlists;
+	return playlists;
 	}
-
-	public void setPlaylists(List<Playlist> playlists) {
-		this.playlists = playlists;
-	}
+//
+//	public void setPlaylists(List<Playlist> playlists) {
+//		this.playlists = playlists;
+//	}
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
