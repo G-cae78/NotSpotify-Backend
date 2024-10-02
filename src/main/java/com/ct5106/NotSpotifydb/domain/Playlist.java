@@ -15,14 +15,14 @@ public class Playlist {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long playlistId;
-	
+
 	private String playlistName;
-	private String[] songs;
+	private String songs;
 	private float playlistLength;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="user")
-	private User user;
+	private AppUser user;
 	
 	
 	public Playlist(){
@@ -30,14 +30,20 @@ public class Playlist {
 		
 	}
 	
-	public Playlist(String playlistName, User user, String[] songs, float playlistLength) {
+	public Playlist(String playlistName,String songs, float playlistLength,AppUser user) {
 		super();
-		this.setPlaylistName(playlistName);
-		this.setUser(user);
-		this.setSongs(songs);
-		this.setPlaylistLength(playlistLength);
+		this.playlistName=playlistName;
+		this.songs=songs;
+		this.playlistLength=playlistLength;
+		this.user=user;
+	}
+	public Long getPlaylistId() {
+		return playlistId;
 	}
 
+	public void setPlaylistId(Long playlistId) {
+		this.playlistId = playlistId;
+	}
 	public String getPlaylistName() {
 		return playlistName;
 	}
@@ -46,19 +52,19 @@ public class Playlist {
 		this.playlistName = playlistName;
 	}
 
-	public User getUser() {
+	public AppUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(AppUser user) {
 		this.user = user;
 	}
 
-	public String[] getSongs() {
+	public String getSongs() {
 		return songs;
 	}
 
-	public void setSongs(String[] songs) {
+	public void setSongs(String songs) {
 		this.songs = songs;
 	}
 
@@ -71,3 +77,4 @@ public class Playlist {
 	}
 	
 }
+

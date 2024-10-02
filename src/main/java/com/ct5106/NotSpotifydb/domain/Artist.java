@@ -1,7 +1,6 @@
 package com.ct5106.NotSpotifydb.domain;
 
 import java.util.List;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
