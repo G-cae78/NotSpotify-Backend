@@ -11,8 +11,8 @@ import com.ct5106.NotSpotifydb.domain.Album;
 import com.ct5106.NotSpotifydb.domain.AlbumRepository;
 import com.ct5106.NotSpotifydb.domain.Artist;
 import com.ct5106.NotSpotifydb.domain.ArtistRepository;
-import com.ct5106.NotSpotifydb.domain.Playlist;
-import com.ct5106.NotSpotifydb.domain.PlaylistRepository;
+import com.ct5106.NotSpotifydb.domain.UserPlaylist;
+import com.ct5106.NotSpotifydb.domain.UserPlaylistRepository;
 import com.ct5106.NotSpotifydb.domain.AppUser;
 import com.ct5106.NotSpotifydb.domain.AppUserRepository;
 
@@ -21,12 +21,12 @@ import com.ct5106.NotSpotifydb.domain.AppUserRepository;
 public class NotSpotifydbApplication implements CommandLineRunner{ //so you can override the run() method
 	private final AlbumRepository albumRepo;
 	private final ArtistRepository artistRepo;
-	private final PlaylistRepository playlistRepo;
+	private final UserPlaylistRepository playlistRepo;
 	private final AppUserRepository userRepo;
 	private static final Logger logger = LoggerFactory.getLogger(NotSpotifydbApplication.class);
 	
 	
-	public NotSpotifydbApplication(ArtistRepository artistRepo, AlbumRepository albumRepo, PlaylistRepository playlistRepo, AppUserRepository userRepo) { // inject a working instance of the repo class
+	public NotSpotifydbApplication(ArtistRepository artistRepo, AlbumRepository albumRepo, UserPlaylistRepository playlistRepo, AppUserRepository userRepo) { // inject a working instance of the repo class
 		this.artistRepo=artistRepo;
 		this.albumRepo=albumRepo;
 		this.playlistRepo=playlistRepo;
@@ -47,9 +47,9 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		
  		AppUser Kelly= new AppUser("Kelly");
      	userRepo.save(Kelly);
-//		
-//		Playlist Rock=new Playlist("Rock mix for Monday's","Bohemian Rhapsody",2.5f,Kelly);
-//		playlistRepo.save(Rock);
+		
+	    UserPlaylist Rock=new UserPlaylist("Rock mix for Monday's","Bohemian Rhapsody","2.5 hrs",Kelly);
+	    playlistRepo.save(Rock);
 		
 		
 		for(Album album : albumRepo.findAll()) {
@@ -60,6 +60,9 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		}
 		for(AppUser user : userRepo.findAll()) {
 		    logger.info("userName: {}", user.getName());
+		}
+		for(UserPlaylist playlist : playlistRepo.findAll()) {
+		    logger.info("Playlist Made By: {}, Playlist User: {}, Playlist Length: {}",playlist.getUser().getName(),playlist.getPlaylistName(), playlist.getPlaylistLength());
 		}
 		
 	}
