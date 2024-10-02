@@ -1,34 +1,46 @@
 package com.ct5106.NotSpotifydb.domain;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Artist {
 @Id
 @GeneratedValue(strategy=GenerationType.AUTO)
-private Long id;
+private Long artistid;
 // these other entity fields will be automatically mapped to the DB too
 private String artistUserName,realName,song;
 private int yearJoined;
 private int monthlyListeners;
-public String album;
+
+@OneToMany(cascade= CascadeType.ALL, mappedBy="artist")
+private List<Album> albums;
 
 public Artist() {
 	super();
 }
-public Artist(String artistUserName,String realName,String song,String album, int yearJoined, int monthlyListeners) {
+public Artist(String artistUserName,String realName,String song, int yearJoined, int monthlyListeners) {
 	this.artistUserName=artistUserName;
 	this.realName= realName;
 	this.song=song;
-	this.album=album;
+	//this.album=album;
 	this.yearJoined=yearJoined;
 	this.monthlyListeners=monthlyListeners;
 }
+public List<Album> getAlbums(){
+	return albums;
+}
+public void setAlbums(List<Album> albums) {
+	this.albums=albums;
+}
 public Long getId() {
-	return id;
+	return artistid;
 }
 public String getArtistUserName() {
 	return artistUserName;
@@ -47,12 +59,6 @@ public String getSong() {
 }
 public void setSong(String song) {
 	this.song = song;
-}
-public String getAlbum() {
-	return album;
-}
-public void setAlbum(String album) {
-	this.album = album;
 }
 public int getYear() {
 	return yearJoined;
