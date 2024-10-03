@@ -18,6 +18,7 @@ private String song;
 private Artist artist;
 private Album album;
 private String releaseDate;
+private float songLength;
 
 public Song() {
 	super();
@@ -26,11 +27,12 @@ public Song() {
 @OneToMany(cascade= CascadeType.ALL, mappedBy="artist")
 private List<Artist> artists;
 
-public Song(String song, Artist artist, Album album, String releaseDate) {
+public Song(String song, Artist artist, Album album, String releaseDate, float songLength) {
 	this.song = song;
 	this.artist = artist;
 	this.album = album;
 	this.releaseDate = releaseDate;
+	this.songLength = songLength;
 }
 
 public List<Artist> getArtists(){
@@ -67,4 +69,10 @@ public void setReleaseDate(String releaseDate) {
 	this.releaseDate = releaseDate;
 }
 
+public float getSongLenth() {
+	return songLength;
+}
+public void setSongLength(float songLength) {
+	this.songLength = songLength;
+}
 }
