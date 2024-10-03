@@ -123,6 +123,8 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		
 
 		for(Song song : songRepo.findAll()) {
+			logger.info("Song Name: {}, Album: {}, Artist: {}, Release Date: {}" song.getSong(),song.getArtist(), song.getAlbum(), song.getReleaseDate());
+			song.getSong();
 			song.getAlbum();
 			song.getArtist();
 			song.getReleaseDate();
