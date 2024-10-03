@@ -1,78 +1,81 @@
 package com.ct5106.NotSpotifydb.domain;
 
-import java.util.List;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Song {
-@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-private String song;
-private Artist artist;
-private Album album;
-private String releaseDate;
-private float songLength;
 
-public Song() {
-	super();
-}
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long songId;
 
-@OneToMany(cascade= CascadeType.ALL, mappedBy="artist")
-private List<Artist> artists;
+    private String songTitle;
+    private String releaseDate;
 
-public Song(String song, Artist artist, Album album, String releaseDate, float songLength) {
-	this.song = song;
-	this.artist = artist;
-	this.album = album;
-	this.releaseDate = releaseDate;
-	this.songLength = songLength;
-}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "artist")
+    private Artist artist;
 
-public List<Artist> getArtists(){
-	return artists;
-}
-public void setSongs(List<Artist> artists) {
-	this.artists=artists;
-}
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "album")
+    private Album album;
 
-public String getSong() {
-	return song;
-}
-public void setSong(String song) {
-	this.song = song;
-}
+    // Constructors
+    public Song() {
+        super();
+    }
 
+    public Song(String songTitle, Artist artist, String releaseDate, Album album) {
+        this.songTitle = songTitle;
+        this.artist = artist;
+        this.releaseDate = releaseDate;
+        this.album = album;
+    }
 
-public Artist getArtist() {
-	return artist;
-}
-public void setArtist(Artist artist) {
-	this.artist = artist;
-}
-public Album getAlbum() {
-	return album;
-}
-public void setAlbum(Album album) {
-	this.album = album;
-}
-public String getReleaseDate() {
-	return releaseDate;
-}
-public void setReleaseDate(String releaseDate) {
-	this.releaseDate = releaseDate;
-}
+    // Getters and Setters
+    public Long getSongId() {
+        return songId;
+    }
 
-public float getSongLength() {
-	return songLength;
-}
-public void setSongLength(float songLength) {
-	this.songLength = songLength;
-}
+    public void setSongId(Long songId) {
+        this.songId = songId;
+    }
+
+    public String getSongTitle() {
+        return songTitle;
+    }
+
+    public void setSongTitle(String songTitle) {
+        this.songTitle = songTitle;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Artist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(Artist artist) {
+        this.artist = artist;
+    }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
 }
