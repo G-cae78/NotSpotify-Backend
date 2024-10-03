@@ -70,12 +70,13 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		albumRepo.save(sos);
 		
 
-<<<<<<< HEAD
+
  		AppUser Kelly= new AppUser("Kelly");
      	userRepo.save(Kelly);
      	
      	Song geyser= new Song("Geyser",mitski, beTheCowboy, "14th May, 2018");
      	Song mobTies = new Song("Mob Ties", drake, scorpion, "29th June, 2019");
+     	Song blind = new Song("Blind", sza, sos, "9th December, 2022");
      	songRepo.save(geyser);
      	songRepo.save(mobTies);
 
@@ -83,12 +84,12 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 //		Playlist Rock=new Playlist("Rock mix for Monday's","Bohemian Rhapsody",2.5f,Kelly);
 //		playlistRepo.save(Rock);
 
-=======
+
  		AppUser kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", "16/05/2004");
      	userRepo.save(kelly);
      	AppUser joey= new AppUser("Joey$","itsjoey123@gmail.com","JoeDog","17/07/2006");
      	userRepo.save(joey);
->>>>>>> d531bb6fece0a30c129ca522d179c244e37ed7b6
+
 		
 	    UserPlaylist rock=new UserPlaylist("Rock mix for Monday's","Bohemian Rhapsody","2.5 hrs",kelly);
 	    playlistRepo.save(rock);
