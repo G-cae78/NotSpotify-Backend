@@ -1,6 +1,7 @@
 package com.ct5106.NotSpotifydb.domain;
 
 import java.util.List;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +22,9 @@ private int monthlyListeners;
 @OneToMany(cascade= CascadeType.ALL, mappedBy="artist")
 private List<Album> albums;
 
+@OneToMany(cascade= CascadeType.ALL, mappedBy="artist")
+private List<Song> songs;
+
 public Artist() {
 	super();
 }
@@ -38,6 +42,12 @@ public List<Album> getAlbums(){
 }
 public void setAlbums(List<Album> albums) {
 	this.albums=albums;
+}
+public List<Song> getSongs(){
+	return songs;
+}
+public void setSongs(List<Song> songs) {
+	this.songs=songs;
 }
 public Long getId() {
 	return artistid;

@@ -11,6 +11,8 @@ import com.ct5106.NotSpotifydb.domain.Album;
 import com.ct5106.NotSpotifydb.domain.AlbumRepository;
 import com.ct5106.NotSpotifydb.domain.Artist;
 import com.ct5106.NotSpotifydb.domain.ArtistRepository;
+import com.ct5106.NotSpotifydb.domain.Song;
+import com.ct5106.NotSpotifydb.domain.SongRepository;
 import com.ct5106.NotSpotifydb.domain.UserPlaylist;
 import com.ct5106.NotSpotifydb.domain.UserPlaylistRepository;
 import com.ct5106.NotSpotifydb.domain.AppUser;
@@ -23,14 +25,16 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	private final ArtistRepository artistRepo;
 	private final UserPlaylistRepository playlistRepo;
 	private final AppUserRepository userRepo;
+	private final SongRepository songRepo;
 	private static final Logger logger = LoggerFactory.getLogger(NotSpotifydbApplication.class);
 	
 	
-	public NotSpotifydbApplication(ArtistRepository artistRepo, AlbumRepository albumRepo, UserPlaylistRepository playlistRepo, AppUserRepository userRepo) { // inject a working instance of the repo class
+	public NotSpotifydbApplication(ArtistRepository artistRepo, AlbumRepository albumRepo, UserPlaylistRepository playlistRepo, AppUserRepository userRepo, SongRepository songRepo) { // inject a working instance of the repo class
 		this.artistRepo=artistRepo;
 		this.albumRepo=albumRepo;
 		this.playlistRepo=playlistRepo;
 		this.userRepo=userRepo;
+		this.songRepo=songRepo;
 	}
 	
 	@Override
@@ -44,12 +48,22 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		artistRepo.save(mitski);
 		artistRepo.save(sza);
 		
-		Album scorpion= new Album("Mob Ties","29th June, 2019",1000000000,drake);
-		Album beTheCowboy= new Album("Geyser","14th May, 2018",469000,mitski);
-		Album sos= new Album("Blind","9th December, 2022",111100160,sza);
+		Album scorpion= new Album("29th June, 2019",1000000000,drake);
+		Album beTheCowboy= new Album("14th May, 2018",469000,mitski);
+		Album sos= new Album("9th December, 2022",111100160,sza);
 		albumRepo.save(scorpion);
 		albumRepo.save(beTheCowboy);
 		albumRepo.save(sos);
+		
+		
+		Song geyser= new Song("Geyser",mitski,"14th May, 2018",beTheCowboy);
+     	Song mobTies = new Song("Mob Ties",drake,"29th June, 2019",scorpion);
+     	Song blind = new Song("Blind", sza,"9th December, 2022",sos);
+     	songRepo.save(geyser);
+     	songRepo.save(mobTies);
+     	songRepo.save(blind);
+
+		
 		
 
  		AppUser kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", "16/05/2004");
@@ -61,7 +75,8 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	    playlistRepo.save(rock);
 	    UserPlaylist party=new UserPlaylist("Joey's Party mix","Viva la Vida","4 hrs",joey);
 	    playlistRepo.save(party);
-
+	    
+		
 		
 		
 		for(Album album : albumRepo.findAll()) {

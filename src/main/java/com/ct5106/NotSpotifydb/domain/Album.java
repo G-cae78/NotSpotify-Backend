@@ -1,6 +1,9 @@
 
 package com.ct5106.NotSpotifydb.domain;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Album {
@@ -16,25 +20,36 @@ public class Album {
     private Long albumid;
     
 
-	private String songs,releaseDate;
+	private String releaseDate;
+	//private Song songs;
     private int totalPlays;
     
    @ManyToOne(fetch= FetchType.LAZY)
    @JoinColumn(name="artist") // use snake case to match common database conventions
    private Artist artist;
+   
+   @OneToMany(cascade= CascadeType.ALL, mappedBy= "album", fetch=FetchType.EAGER)
+   private List<Song> songs;
 
     public Album(){
         super();
     }
 
-    public Album(String songs, String releaseDate, int totalPlays,Artist artist){
+    public Album(String releaseDate, int totalPlays,Artist artist){
     	this.artist=artist;
-        this.songs=songs;
         this.releaseDate = releaseDate; 
 //        this.yearReleased = yearReleased;
         this.totalPlays = totalPlays;
       
     }
+
+	public void setSongs(List<Song> songs) {
+		this.songs = songs;
+	}
+	public List<Song> getSongs()
+	  {
+		  return songs;
+	  }
 
 	public Long getAlbumid() {
 		return albumid;
@@ -44,13 +59,6 @@ public class Album {
 		this.albumid = albumid;
 	}
 
-	public String getSongs() {
-		return songs;
-	}
-
-	public void setSongs(String songs) {
-		this.songs = songs;
-	}
 
 	public String getReleaseDate() {
 		return releaseDate;
