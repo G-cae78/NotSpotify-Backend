@@ -19,14 +19,11 @@ public class UserPlaylist {
 	private String playlistName,songs;
     private String playlistLength;
     
-   @ManyToOne(fetch= FetchType.EAGER)
-   @JoinColumn(name="appuser") // use snake case to match common database conventions
-   private AppUser user;
-	
+    @ManyToOne(fetch= FetchType.EAGER)
+    @JoinColumn(name="appuser") // use snake case to match common database conventions
+    private AppUser user;
 	
 	public UserPlaylist(){
-		super();
-		
 	}
 	
 	public UserPlaylist(String playlistName,String songs, String playlistLength,AppUser user) {
