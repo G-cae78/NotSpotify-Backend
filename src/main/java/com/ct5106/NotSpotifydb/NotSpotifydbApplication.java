@@ -56,7 +56,7 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	public void run(String... args) throws Exception {
 		
 		//creating a list of songs
-		List<Song> songList = new ArrayList();
+		List<Song> songList = new ArrayList<Song>();
 		
 		//Populating Artist database
 		Artist drake= new Artist("Drake","Arbery Graham","Mob Ties",2006,75000000,"Hip Pop");
@@ -88,15 +88,12 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
      	songRepo.save(geyser);
      	songRepo.save(mobTies);
 
-//		
-//		Playlist Rock=new Playlist("Rock mix for Monday's","Bohemian Rhapsody",2.5f,Kelly);
-//		playlistRepo.save(Rock);
-
 
  		AppUser kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", "16/05/2004");
      	userRepo.save(kelly);
      	AppUser joey= new AppUser("Joey$","itsjoey123@gmail.com","JoeDog","17/07/2006");
      	userRepo.save(joey);
+     	
      	
 	    UserPlaylist rock=new UserPlaylist("Rock mix for Monday's",songList,getPlayListLength(songList),kelly);
 	    playlistRepo.save(rock);
@@ -121,7 +118,7 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	    }
 		
 		for(UserPlaylist playlist : playlistRepo.findAll()) {
-		    logger.info("Playlist Made By: {}, Playlist User: {}, Playlist Length: {}",playlist.getUser().getName(),playlist.getPlaylistName(), playlist.getPlaylistLength());
+		    logger.info("Playlist Made By: {}, Playlist Name: {}, Playlist Length: {}, Songs: {}",playlist.getUser().getName(),playlist.getPlaylistName(), playlist.getPlaylistLength(), playlist.getSongs());
 		}
 		
 
@@ -130,8 +127,6 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 			song.getArtist();
 			song.getReleaseDate();
 		}
-
-
 		
 	}
 
