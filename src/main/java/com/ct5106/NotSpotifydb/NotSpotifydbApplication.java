@@ -124,7 +124,7 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		
 
 		for(Song song : songRepo.findAll()) {
-			logger.info("Song Name: {}, Album: {}, Artist: {}, Release Date: {}, Song Length: {}" song.getSong(),song.getArtist(), song.getAlbum(), song.getReleaseDate(), song.getSongLength());
+			logger.info("Song Name: {}, Album: {}, Artist: {}, Release Date: {}, Song Length: {}", song.getSong(),song.getArtist(), song.getAlbum(), song.getReleaseDate(), song.getSongLength());
 			song.getSong();
 			song.getAlbum();
 			song.getArtist();
@@ -143,7 +143,7 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	private float getPlayListLength(List<Song> songList) {
 		float time = 0;
 		for(Song song: songList) {
-			time+= song.getSongLenth();
+			time+= song.getSongLength();
 		}
 		return time;
 	}
