@@ -39,17 +39,15 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		this.playlistRepo=playlistRepo;
 		this.userRepo=userRepo;
 		this.songRepo=songRepo;
-		
-	private final ArtistRepository aRepo;
-	
-	
-	
-	
-	public NotSpotifydbApplication(ArtistRepository aRepository) { // inject a working instance of the repo class
-		this.aRepo=aRepository;
-		
->>>>>>> Stashed changes
 	}
+	
+	
+	
+//	public NotSpotifydbApplication(ArtistRepository aRepository) { // inject a working instance of the repo class
+//		this.aRepo=aRepository;
+//		
+//
+//	}
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -71,7 +69,7 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		
 
 
- 		AppUser Kelly= new AppUser("Kelly");
+ 		AppUser Kelly= new AppUser("Kelly", null, null, null);
      	userRepo.save(Kelly);
      	
      	Song geyser= new Song("Geyser",mitski, beTheCowboy, "14th May, 2018");
