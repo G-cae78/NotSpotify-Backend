@@ -54,6 +54,12 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 
 		// Saving Artist instances to artist repository
 		artistRepo.save(drake);
+		//Populating Artist database
+		Artist drake= new Artist("Drake","Arbery Graham",2006,75000000,"Hip Pop");
+		Artist mitski= new Artist("Mitski","Mitsuki Laycock",2006,22000000,"Dance");
+		Artist sza= new Artist("Sza","Solána Imani Rowe",2014,40000000,"R&B");
+		//Saving Artist instances to artist repository
+		artistRepo.save(drake);	
 		artistRepo.save(mitski);
 		artistRepo.save(sza);
 
