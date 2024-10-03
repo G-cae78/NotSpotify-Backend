@@ -14,7 +14,7 @@ public class Artist {
 @GeneratedValue(strategy=GenerationType.AUTO)
 private Long artistid;
 // these other entity fields will be automatically mapped to the DB too
-private String artistUserName,realName,song;
+private String artistUserName,realName,song,genre;
 private int yearJoined;
 private int monthlyListeners;
 
@@ -24,13 +24,14 @@ private List<Album> albums;
 public Artist() {
 	super();
 }
-public Artist(String artistUserName,String realName,String song, int yearJoined, int monthlyListeners) {
+public Artist(String artistUserName,String realName,String song, int yearJoined, int monthlyListeners,String genre) {
 	this.artistUserName=artistUserName;
 	this.realName= realName;
 	this.song=song;
 	//this.album=album;
 	this.yearJoined=yearJoined;
 	this.monthlyListeners=monthlyListeners;
+	this.genre=genre;
 }
 public List<Album> getAlbums(){
 	return albums;
@@ -70,6 +71,12 @@ public int getMonthlyListeners() {
 }
 public void setMonthlyListeners(int monthlyListeners) {
 	this.monthlyListeners = monthlyListeners;
+}
+public String getGenre() {
+	return genre;
+}
+public void setGenre(String genre) {
+	this.genre = genre;
 }
 }
 

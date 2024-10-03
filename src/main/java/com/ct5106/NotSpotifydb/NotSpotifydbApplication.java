@@ -35,27 +35,32 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	
 	@Override
 	public void run(String... args) throws Exception {
-		Artist drake= new Artist("Drake","Arbery Graham","Mob Ties",2006,75000000);
-		Artist mitski= new Artist("Mitski","Mitsuki Laycock","Geyser",2006,22000000);
-		artistRepo.save(drake);	//artists	
+		//Populating Artist database
+		Artist drake= new Artist("Drake","Arbery Graham","Mob Ties",2006,75000000,"Hip Pop");
+		Artist mitski= new Artist("Mitski","Mitsuki Laycock","Geyser",2006,22000000,"Dance");
+		Artist sza= new Artist("Sza","Solána Imani Rowe","Blind",2014,40000000,"R&B");
+		//Saving Artist instances to artist repository
+		artistRepo.save(drake);	
 		artistRepo.save(mitski);
+		artistRepo.save(sza);
 		
-		Album scorpion= new Album("Mob Ties","29th June, 20s19",1000000000,drake);
+		Album scorpion= new Album("Mob Ties","29th June, 2019",1000000000,drake);
 		Album beTheCowboy= new Album("Geyser","14th May, 2018",469000,mitski);
+		Album sos= new Album("Blind","9th December, 2022",111100160,sza);
 		albumRepo.save(scorpion);
 		albumRepo.save(beTheCowboy);
+		albumRepo.save(sos);
 		
 
- 		AppUser Kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", "16/05/2004");
-     	userRepo.save(Kelly);
-
-//		
-//		Playlist Rock=new Playlist("Rock mix for Monday's","Bohemian Rhapsody",2.5f,Kelly);
-//		playlistRepo.save(Rock);
-
+ 		AppUser kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", "16/05/2004");
+     	userRepo.save(kelly);
+     	AppUser joey= new AppUser("Joey$","itsjoey123@gmail.com","JoeDog","17/07/2006");
+     	userRepo.save(joey);
 		
-	    UserPlaylist Rock=new UserPlaylist("Rock mix for Monday's","Bohemian Rhapsody","2.5 hrs",Kelly);
-	    playlistRepo.save(Rock);
+	    UserPlaylist rock=new UserPlaylist("Rock mix for Monday's","Bohemian Rhapsody","2.5 hrs",kelly);
+	    playlistRepo.save(rock);
+	    UserPlaylist party=new UserPlaylist("Joey's Party mix","Viva la Vida","4 hrs",joey);
+	    playlistRepo.save(party);
 
 		
 		

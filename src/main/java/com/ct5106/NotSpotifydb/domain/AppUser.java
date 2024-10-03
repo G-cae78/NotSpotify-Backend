@@ -80,7 +80,7 @@ public class AppUser {
 		return dob;
 	}
 	
-	public void setDOB() {
+	public void setDOB(String dob) {
 		this.dob=dob;
 	}
 //	@Override
