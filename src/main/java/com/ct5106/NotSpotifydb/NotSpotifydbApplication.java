@@ -1,5 +1,8 @@
 
 package com.ct5106.NotSpotifydb;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -53,6 +56,10 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		//creating a list of songs
+		List<Song> songList = new ArrayList();
+		
 		//Populating Artist database
 		Artist drake= new Artist("Drake","Arbery Graham","Mob Ties",2006,75000000,"Hip Pop");
 		Artist mitski= new Artist("Mitski","Mitsuki Laycock","Geyser",2006,22000000,"Dance");
@@ -74,9 +81,12 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 
  		
      	
-     	Song geyser= new Song("Geyser",mitski, beTheCowboy, "14th May, 2018");
-     	Song mobTies = new Song("Mob Ties", drake, scorpion, "29th June, 2019");
-     	Song blind = new Song("Blind", sza, sos, "9th December, 2022");
+     	Song geyser= new Song("Geyser",mitski, beTheCowboy, "14th May, 2018",2.3f);
+     	songList.add(geyser);
+     	Song mobTies = new Song("Mob Ties", drake, scorpion, "29th June, 2019",3f);
+     	songList.add(mobTies);
+     	Song blind = new Song("Blind", sza, sos, "9th December, 2022",3.1f);
+     	songList.add(blind);
      	songRepo.save(geyser);
      	songRepo.save(mobTies);
      	songRepo.save(blind);
@@ -89,11 +99,10 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
      	userRepo.save(kelly);
      	AppUser joey= new AppUser("Joey$","itsjoey123@gmail.com","JoeDog","17/07/2006");
      	userRepo.save(joey);
-
-		
-	    UserPlaylist rock=new UserPlaylist("Rock mix for Monday's","Bohemian Rhapsody","2.5 hrs",kelly);
+     	
+	    UserPlaylist rock=new UserPlaylist("Rock mix for Monday's",songList,getPlayListLength(songList),kelly);
 	    playlistRepo.save(rock);
-	    UserPlaylist party=new UserPlaylist("Joey's Party mix","Viva la Vida","4 hrs",joey);
+	    UserPlaylist party=new UserPlaylist("Joey's Party mix",songList,getPlayListLength(songList),joey);
 	    playlistRepo.save(party);
 
 		
@@ -132,5 +141,13 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	public static void main(String[] args) {
 		SpringApplication.run(NotSpotifydbApplication.class, args);
 		logger.info("Application Started successfully");
+	}
+	
+	private float getPlayListLength(List<Song> songList) {
+		float time = 0;
+		for(Song song: songList) {
+			time+= song.getSongLength();
+		}
+		return time;
 	}
 }
