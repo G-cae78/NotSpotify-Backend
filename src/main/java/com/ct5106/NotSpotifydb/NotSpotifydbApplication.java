@@ -67,9 +67,9 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		artistRepo.save(mitski);
 		artistRepo.save(sza);
 		
-		Album scorpion= new Album("Mob Ties","29th June, 2019",1000000000,drake);
-		Album beTheCowboy= new Album("Geyser","14th May, 2018",469000,mitski);
-		Album sos= new Album("Blind","9th December, 2022",111100160,sza);
+		Album scorpion= new Album("Mob Ties","29th June, 2019",1000000000,drake,"Hip Pop");
+		Album beTheCowboy= new Album("Geyser","14th May, 2018",469000,mitski, "Dance");
+		Album sos= new Album("Blind","9th December, 2022",111100160,sza, "R&B");
 		albumRepo.save(scorpion);
 		albumRepo.save(beTheCowboy);
 		albumRepo.save(sos);

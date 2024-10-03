@@ -14,9 +14,7 @@ public class Album {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long albumid;
-    
-
-	private String songs,releaseDate;
+	private String songs,releaseDate,genre;
     private int totalPlays;
     
    @ManyToOne(fetch= FetchType.LAZY)
@@ -27,13 +25,12 @@ public class Album {
         super();
     }
 
-    public Album(String songs, String releaseDate, int totalPlays,Artist artist){
-    	this.artist=artist;
-        this.songs=songs;
-        this.releaseDate = releaseDate; 
-//        this.yearReleased = yearReleased;
+    public Album(String songs, String releaseDate, int totalPlays, Artist artist, String genre){
+    	this.artist= artist;
+        this.songs= songs;
+        this.releaseDate = releaseDate;
         this.totalPlays = totalPlays;
-      
+      	this.genre = genre;
     }
 
 	public Long getAlbumid() {
@@ -60,18 +57,6 @@ public class Album {
 		this.releaseDate = releaseDate;
 	}
 
-//	public int getYearReleased() {
-//		return yearReleased;
-//	}
-//
-//	public void setYearReleased(int yearReleased) {
-//		this.yearReleased = yearReleased;
-//	}
-
-	public int getTotlPlays() {
-		return totalPlays;
-	}
-
 	public Artist getArtist() {
 		return artist;
 	}
@@ -86,5 +71,13 @@ public class Album {
 
 	public void setTotalPlays(int totalPlays) {
 		this.totalPlays = totalPlays;
+	}
+
+	public void setGenre(String genre){
+		this.genre = genre;
+	}
+
+	public String getGenre() {
+		return genre;
 	}
 }
