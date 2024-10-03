@@ -69,7 +69,7 @@ public void setReleaseDate(String releaseDate) {
 	this.releaseDate = releaseDate;
 }
 
-public float getSongLenth() {
+public float getSongLength() {
 	return songLength;
 }
 public void setSongLength(float songLength) {

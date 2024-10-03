@@ -87,6 +87,7 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
      	songList.add(blind);
      	songRepo.save(geyser);
      	songRepo.save(mobTies);
+     	songRepo.save(blind);
 
 
  		AppUser kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", "16/05/2004");
@@ -123,11 +124,12 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		
 
 		for(Song song : songRepo.findAll()) {
-			logger.info("Song Name: {}, Album: {}, Artist: {}, Release Date: {}" song.getSong(),song.getArtist(), song.getAlbum(), song.getReleaseDate());
+			logger.info("Song Name: {}, Album: {}, Artist: {}, Release Date: {}, Song Length: {}" song.getSong(),song.getArtist(), song.getAlbum(), song.getReleaseDate(), song.getSongLength());
 			song.getSong();
 			song.getAlbum();
 			song.getArtist();
 			song.getReleaseDate();
+			song.getSongLength();
 		}
 		
 	}
@@ -141,7 +143,7 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 	private float getPlayListLength(List<Song> songList) {
 		float time = 0;
 		for(Song song: songList) {
-			time+= song.getSongLength();
+			time+= song.getSongLenth();
 		}
 		return time;
 	}
