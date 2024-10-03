@@ -39,15 +39,17 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		this.playlistRepo=playlistRepo;
 		this.userRepo=userRepo;
 		this.songRepo=songRepo;
+		
+	private final ArtistRepository aRepo;
+	
+	
+	
+	
+	public NotSpotifydbApplication(ArtistRepository aRepository) { // inject a working instance of the repo class
+		this.aRepo=aRepository;
+		
+>>>>>>> Stashed changes
 	}
-	
-	
-	
-//	public NotSpotifydbApplication(ArtistRepository aRepository) { // inject a working instance of the repo class
-//		this.aRepo=aRepository;
-//		
-//
-//	}
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -55,6 +57,7 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		Artist drake= new Artist("Drake","Arbery Graham","Mob Ties",2006,75000000,"Hip Pop");
 		Artist mitski= new Artist("Mitski","Mitsuki Laycock","Geyser",2006,22000000,"Dance");
 		Artist sza= new Artist("Sza","Solána Imani Rowe","Blind",2014,40000000,"R&B");
+		
 		//Saving Artist instances to artist repository
 		artistRepo.save(drake);	
 		artistRepo.save(mitski);
@@ -69,15 +72,14 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 		
 
 
- 		AppUser Kelly= new AppUser("Kelly", null, null, null);
-     	userRepo.save(Kelly);
+ 		
      	
      	Song geyser= new Song("Geyser",mitski, beTheCowboy, "14th May, 2018");
      	Song mobTies = new Song("Mob Ties", drake, scorpion, "29th June, 2019");
      	Song blind = new Song("Blind", sza, sos, "9th December, 2022");
      	songRepo.save(geyser);
      	songRepo.save(mobTies);
-
+     	songRepo.save(blind);
 //		
 //		Playlist Rock=new Playlist("Rock mix for Monday's","Bohemian Rhapsody",2.5f,Kelly);
 //		playlistRepo.save(Rock);
