@@ -61,8 +61,8 @@ public Song(String songTitle,Artist artist, String releaseDate,Album album) {
 public String getSongTitle() {
 	return songTitle;
 }
-public void setSongName(String songName) {
-	this.songTitle = songName;
+public void setSongTitle(String songTitle) {
+	this.songTitle = songTitle;
 }
 
 
