@@ -24,10 +24,8 @@ public class Album {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long albumid;
-	private String songs,releaseDate,genre;
+	private String releaseDate,genre;
     
-
-	private String releaseDate;
 	
 	@Column(name = "album_title")
 	private String albumTitle;
@@ -44,24 +42,15 @@ public class Album {
    private List<Song> songs;
 
     public Album(){
-        super();
-    }
-
-
-    public Album(String songs, String releaseDate, int totalPlays, Artist artist, String genre){
-    	this.artist= artist;
-        this.songs= songs;
-        this.releaseDate = releaseDate;
+        
     }
         
  
     public Album(String albumTitle,String releaseDate, int totalPlays,Artist artist){
-
+    	super();
     	this.artist=artist;
         this.releaseDate = releaseDate; 
-//        this.yearReleased = yearReleased;
         this.totalPlays = totalPlays;
-      	this.genre = genre;
         this.albumTitle=albumTitle;
      
     }
@@ -114,11 +103,11 @@ public class Album {
 		this.totalPlays = totalPlays;
 	}
 
-	public void setGenre(String genre){
-		this.genre = genre;
-	}
-
-	public String getGenre() {
-		return genre;
-	}
+//	public void setGenre(String genre){
+//		this.genre = genre;
+//	}
+//
+//	public String getGenre() {
+//		return genre;
+//	}
 }

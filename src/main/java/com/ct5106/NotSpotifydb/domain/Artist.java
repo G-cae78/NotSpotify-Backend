@@ -20,6 +20,7 @@ private Long artistid;
 private String artistUserName,realName,genre;
 private int yearJoined;
 private int monthlyListeners;
+private Album album;
 
 
 @OneToMany(cascade= CascadeType.ALL, mappedBy="artist")
@@ -35,8 +36,6 @@ public Artist() {
 public Artist(String artistUserName,String realName, int yearJoined, int monthlyListeners,String genre) {
 	this.artistUserName=artistUserName;
 	this.realName= realName;
-	
-	//this.album=album;
 	this.yearJoined=yearJoined;
 	this.monthlyListeners=monthlyListeners;
 	this.genre=genre;
@@ -86,6 +85,12 @@ public String getGenre() {
 public void setGenre(String genre) {
 	this.genre = genre;
 }
+//public Album getAlbum() {
+//	return album;
+//}
+//public void setAlbum(Album album) {
+//	this.album = album;
+//}
 }
 
 
