@@ -24,7 +24,7 @@ private String releaseDate;
 
 //@ManyToMany(cascade= CascadeType.ALL, mappedBy="artist")
 //private List<Artist> artists;
-@ManyToOne(fetch = FetchType.LAZY)
+@ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name= "artist")
 private Artist artist;
 
@@ -84,6 +84,13 @@ public String getReleaseDate() {
 public void setReleaseDate(String releaseDate) {
 	this.releaseDate = releaseDate;
 }
+@Override
+public String toString() {
+	String output="";
+	output+=" ong Title: "+getSongTitle();
+	output+=" Get Artist: "+getArtist().getArtistUserName();
+	
+	return output;
 
-
+}
 }

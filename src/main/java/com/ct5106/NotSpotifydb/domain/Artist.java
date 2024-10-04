@@ -2,6 +2,8 @@ package com.ct5106.NotSpotifydb.domain;
 
 import java.util.List;
 
+//import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +21,9 @@ private String artistUserName,realName,genre;
 private int yearJoined;
 private int monthlyListeners;
 
+
 @OneToMany(cascade= CascadeType.ALL, mappedBy="artist")
+//@JsonManagedReference 
 private List<Album> albums;
 
 @OneToMany(cascade= CascadeType.ALL, mappedBy="artist")
