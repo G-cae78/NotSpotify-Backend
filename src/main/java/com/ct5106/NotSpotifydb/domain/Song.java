@@ -79,3 +79,55 @@ public class Song {
         this.album = album;
     }
 }
+
+
+
+public Long getSongId() {
+	return songId;
+}
+
+
+
+public void setSongId(Long songId) {
+	this.songId = songId;
+}
+
+
+
+public Song(String songTitle,Artist artist, String releaseDate,Album album) {
+	this.songTitle = songTitle;
+	this.artist = artist;
+	this.releaseDate = releaseDate;
+	this.album=album;
+}
+
+
+public String getSongTitle() {
+	return songTitle;
+}
+public void setSongTitle(String songTitle) {
+	this.songTitle = songTitle;
+}
+
+
+public Artist getArtist() {
+	return artist;
+}
+public void setArtist(Artist artist) {
+	this.artist = artist;
+}
+public Album getAlbum() {
+	return album;
+}
+public void setAlbum(Album album) {
+	this.album = album;
+}
+public String getReleaseDate() {
+	return releaseDate;
+}
+public void setReleaseDate(String releaseDate) {
+	this.releaseDate = releaseDate;
+}
+
+
+}
