@@ -14,6 +14,11 @@ public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long songId;
+//@ManyToMany(cascade= CascadeType.ALL, mappedBy="artist")
+//private List<Artist> artists;
+@ManyToOne(fetch = FetchType.EAGER)
+@JoinColumn(name= "artist")
+private Artist artist;
 
     private String songTitle;
     private String releaseDate;
@@ -128,6 +133,16 @@ public String getReleaseDate() {
 public void setReleaseDate(String releaseDate) {
 	this.releaseDate = releaseDate;
 }
+@Override
+public String toString() {
+	String output="";
+	output+=" ong Title: "+getSongTitle();
+	output+=" Get Artist: "+getArtist().getArtistUserName();
+	
+	return output;
 
 
+}
+
+}
 }
