@@ -10,11 +10,15 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface UserPlaylistRepository extends CrudRepository<UserPlaylist, Long>{
 
-	List<UserPlaylist> FindByPlaylistName (String playlistName);
-	List<UserPlaylist> FindByAppUser (AppUser appUser);
-	List<UserPlaylist> FindBySongs (List<Song> Songs);
-	List<UserPlaylist> FindByPlaylistLength (float playlistLength);
-	List<UserPlaylist> FindByAppUserOrPlaylistName(String playlistName, AppUser appUser);
-	//Fetch playlist by length
+	List<UserPlaylist> findByPlaylistName (String playlistName);
+	List<UserPlaylist> findByAppUser (AppUser appUser);
+	List<UserPlaylist> findBySongs (List<Song> Songs);
+	List<UserPlaylist> findByPlaylistLength (float playlistLength);
+	List<UserPlaylist> findByAppUserOrPlaylistName(String playlistName, AppUser appUser);
 	
-}
+	List<UserPlaylist> findByPlaylistNameContaining(@Param("playlistName") String playlistname);
+	
+	@Query("select up from UserPlaylist up where up.playlistLength between ?1 and ?2")
+	List<UserPlaylist> findByPlaylistLengthBetween(@Param("low") float low, @Param("high") float high)
+;
+	}
