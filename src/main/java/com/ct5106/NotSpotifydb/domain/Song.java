@@ -114,7 +114,6 @@ public void setSongTitle(String songTitle) {
 	this.songTitle = songTitle;
 }
 
-
 public Artist getArtist() {
 	return artist;
 }
