@@ -10,9 +10,9 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface ArtistRepository extends CrudRepository<Artist, Long>{
   List<Artist> findByArtistUserName(String artistUserName);
-  List<Artist> findByRealName(String realName);
-  List<Artist> findByYearJoined(int yearJoined);
-  List<Artist> findByGenre(String genre);
+  List<Artist> findByRealName(@Param("realName")String realName);
+  List<Artist> findByYearJoined(@Param("yearJoined")int yearJoined);
+  List<Artist> findByGenre(@Param("genre")String genre);
   List<Artist> findByArtistUserNameOrGenre(String artistUserName, String genre);
   List<Artist> findByArtistUserNameOrderByMonthlyListeners(String artistUserName);
   

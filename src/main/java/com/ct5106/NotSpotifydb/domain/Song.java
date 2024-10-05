@@ -21,6 +21,7 @@ private String songTitle;
 //private Artist artist;
 //private Album album;
 private String releaseDate;
+private float songLength;
 
 //@ManyToMany(cascade= CascadeType.ALL, mappedBy="artist")
 //private List<Artist> artists;
@@ -28,9 +29,25 @@ private String releaseDate;
 @JoinColumn(name= "artist")
 private Artist artist;
 
-@ManyToOne(fetch = FetchType.LAZY)
+@ManyToOne(fetch = FetchType.EAGER)
 @JoinColumn(name= "album")
 private Album album;
+
+@ManyToOne(fetch = FetchType.EAGER)
+@JoinColumn(name= "userPlaylist")
+private UserPlaylist playlist;
+
+public UserPlaylist getPlaylist() {
+	return playlist;
+}
+
+
+
+public void setPlaylist(UserPlaylist playlist) {
+	this.playlist = playlist;
+}
+
+
 
 public Song() {
 	super();
@@ -38,25 +55,30 @@ public Song() {
 
 
 
+public Song(String songTitle, String releaseDate,Album album, float songLength) {
+	this.songTitle = songTitle;
+	//this.artist = artist;
+	this.releaseDate = releaseDate;
+	this.album=album;
+	this.songLength=songLength;
+}
+
+
+public float getSongLength() {
+	return songLength;
+}
+
+public void setSongLength(float songLength) {
+	this.songLength = songLength;
+}
+
 public Long getSongId() {
 	return songId;
 }
 
-
-
 public void setSongId(Long songId) {
 	this.songId = songId;
 }
-
-
-
-public Song(String songTitle,Artist artist, String releaseDate,Album album) {
-	this.songTitle = songTitle;
-	this.artist = artist;
-	this.releaseDate = releaseDate;
-	this.album=album;
-}
-
 
 public String getSongTitle() {
 	return songTitle;
@@ -87,8 +109,8 @@ public void setReleaseDate(String releaseDate) {
 @Override
 public String toString() {
 	String output="";
-	output+=" ong Title: "+getSongTitle();
-	output+=" Get Artist: "+getArtist().getArtistUserName();
+	output+=" Song Title: "+getSongTitle();
+	output+=" Get Artist: "+getAlbum().getArtist().getArtistUserName();
 	
 	return output;
 

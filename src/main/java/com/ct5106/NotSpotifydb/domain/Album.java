@@ -34,7 +34,7 @@ public class Album {
 	//private Song songs;
     private int totalPlays;
     
-   @ManyToOne(fetch= FetchType.LAZY)
+   @ManyToOne(fetch= FetchType.EAGER)
    @JsonIgnoreProperties("albums")  // Ignore the 'albums' property in Artist to prevent recursion
    @JoinColumn(name="artist") // use snake case to match common database conventions
    private Artist artist;
@@ -113,5 +113,15 @@ public class Album {
 
 	public void setTotalPlays(int totalPlays) {
 		this.totalPlays = totalPlays;
+	}
+	@Override
+	public String toString() {
+		String output="";
+		output+=" Album Title: "+getAlbumTitle();
+		output+=" Album Release Date: "+getReleaseDate();
+		//output+=" Album Songs : "+getSongs();
+		output+=" Album Total Plays: "+getTotalPlays();
+		
+		return output;
 	}
 }

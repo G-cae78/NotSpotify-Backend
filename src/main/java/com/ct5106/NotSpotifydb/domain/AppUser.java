@@ -68,11 +68,11 @@ public class AppUser {
 		this.email = email;
 	}
 	
-	public String getUsername() {
+	public String getUserName() {
 		return username;
 	}
 	
-	public void setUsername(String username) {
+	public void setUserName(String username) {
 		this.username = username;
 	}
 	
@@ -83,10 +83,16 @@ public class AppUser {
 	public void setDOB(String dob) {
 		this.dob=dob;
 	}
-//	@Override
-//	public String toString() {
-//	    return "Playlist By " + name + "'}";
-//	}
+	@Override
+	public String toString() {
+		String output="";
+		output+="  Username: "+getUserName();
+		output+="  Real Name: "+getName();
+		output+="  Email: "+getEmail();
+		output+="  Date of Birth: "+getDOB();
+		
+		return output;
+	}
 
 
 }
