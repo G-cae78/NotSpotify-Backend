@@ -11,11 +11,22 @@ import jakarta.persistence.ManyToOne;
 @Entity
 public class Song {
 
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
+private Long songId;
+private String songTitle;
+//private Artist artist;
+//private Album album;
+private String releaseDate;
+private float songLength;
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long songId;
     private String songTitle;
     private float songLength;
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name= "artist")
@@ -48,6 +59,58 @@ public class Song {
     // Getters and Setters
 
 
+
+
+@ManyToOne(fetch = FetchType.EAGER)
+@JoinColumn(name= "album")
+private Album album;
+
+@ManyToOne(fetch = FetchType.EAGER)
+@JoinColumn(name= "userPlaylist")
+private UserPlaylist playlist;
+
+public UserPlaylist getPlaylist() {
+	return playlist;
+}
+
+
+
+public void setPlaylist(UserPlaylist playlist) {
+	this.playlist = playlist;
+}
+
+
+
+public Song() {
+	super();
+}
+
+
+
+public Song(String songTitle, String releaseDate,Album album, float songLength) {
+	this.songTitle = songTitle;
+	//this.artist = artist;
+	this.releaseDate = releaseDate;
+	this.album=album;
+	this.songLength=songLength;
+}
+
+
+public float getSongLength() {
+	return songLength;
+}
+
+public void setSongLength(float songLength) {
+	this.songLength = songLength;
+}
+
+public Long getSongId() {
+	return songId;
+}
+
+public void setSongId(Long songId) {
+	this.songId = songId;
+}
 
 public String getSongTitle() {
 		return songTitle;
@@ -90,6 +153,8 @@ public String toString() {
 	String output="";
 	output+="Song Title: "+getSongTitle();
 	output+="Get Artist: "+getArtist().getArtistUserName();
+	output+=" Song Title: "+getSongTitle();
+	output+=" Get Artist: "+getAlbum().getArtist().getArtistUserName();
 	
 	return output;
 

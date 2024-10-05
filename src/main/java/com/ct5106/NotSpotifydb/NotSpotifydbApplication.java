@@ -48,7 +48,7 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 		List<Song> songList = new ArrayList<Song>();
 
 		// Populating Artist database
-	    Artist drake = new Artist("Drake", "Aubrey Graham", 2006, 75000000, "Hip Pop");
+	    Artist drake = new Artist("Drake", "Aubrey Graham", 2005, 75000000, "Hip Pop");
 	    Artist mitski = new Artist("Mitski", "Mitsuki Laycock", 2006, 22000000, "Dance");
 	    Artist sza = new Artist("Sza", "Solána Imani Rowe", 2014, 40000000, "R&B");
 	    Artist taylorSwift = new Artist("Taylor Swift", "Taylor Alison Swift", 2006, 150000000, "Pop");
@@ -79,6 +79,7 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 	    albumRepo.save(abbeyRoad);
 
 	    // Populating Song database
+
 	    Song geyser = new Song("Geyser", mitski, "14th May, 2018", beTheCowboy,3.1f);
 	    Song mobTies = new Song("Mob Ties", drake, "29th June, 2019", scorpion,2.5f);
 	    Song blind = new Song("Blind", sza, "9th December, 2022", sos,1.9f);
@@ -87,6 +88,14 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 	    Song comeTogether = new Song("Come Together", beatles, "26th September, 1969", abbeyRoad,2.9f);
 
 		// Saving Song instances to song repository
+
+	    Song geyser = new Song("Geyser", "14th May, 2018", beTheCowboy,3.1f);
+	    Song mobTies = new Song("Mob Ties", "29th June, 2019", scorpion,2.5f);
+	    Song blind = new Song("Blind", "9th December, 2022", sos,1.9f);
+	    Song loveStory = new Song("Love Story", "11th November, 2008", fearless,3f);
+	    Song radioactive = new Song("Radioactive", "4th September, 2012", nightVisions,2.6f);
+	    Song comeTogether = new Song("Come Together", "26th September, 1969", abbeyRoad,2.9f);
+
 
 	    songRepo.save(geyser);
 	    songRepo.save(mobTies);
@@ -117,31 +126,38 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 					album.getTotalPlays());
 		}
 
+ 		AppUser kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", "16/05/2004");
+     	userRepo.save(kelly);
+     	AppUser joey= new AppUser("Joey$","itsjoey123@gmail.com","JoeDog","17/07/2006");
+     	userRepo.save(joey);
+     	
+     	List<Song> songList = new ArrayList<Song>();
+		
+     // Creating and saving UserPlaylist instances
+     		songList.add(geyser);
+     		songList.add(mobTies);
+     		songList.add(blind);
+
+     		UserPlaylist rock = new UserPlaylist("Rock mix for Monday's", songList, getPlayListLength(songList), kelly);
+     		playlistRepo.save(rock);
+     		UserPlaylist party = new UserPlaylist("Joey's Party mix", songList, getPlayListLength(songList), joey);
+     		playlistRepo.save(party);
+
 	    
 		
 		for(Artist artist: artistRepo.findAll()) {
-			logger.info("Artist Username: {}, Artist Real Name: {}, Genre{}, Monthly Listners: {}",
-					artist.getArtistUserName(),
-					artist.getRealName(),
-					artist.getGenre(),
-					artist.getMonthlyListeners());
+			logger.info("Artist Details: {}", artist.toString());
 		}
 		
 		for(Album album : albumRepo.findAll()) {
-		    logger.info("Album: {},Songs: {}, Release date: {}, Total Plays: {}", 
-		    	album.getAlbumTitle(),	
-		        album.getSongs(), 
-		        album.getReleaseDate(), 
-		        album.getTotalPlays());
+		    logger.info("Album Details: {}",album.toString());
 		}
 		for(Song song: songRepo.findAll()) {
-			logger.info("Song Title: {}, Artist: {}, Release Date: {}",
-					song.getSongTitle(),
-					song.getArtist().getArtistUserName(),
-					song.getReleaseDate());
+			logger.info("Song Details: {} ", song.toString());
 		}
 
 		for (AppUser user : userRepo.findAll()) {
+
 			logger.info("Name: {}, Username: {}, DOB: {}, Email: {}", user.getName(), user.getUsername(), user.getDOB(),
 					user.getEmail());
 		}
@@ -157,6 +173,14 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 		for (Song song : songRepo.findAll()) {
 			logger.info("Song Name: {}, Album: {}, Artist: {}, Release Date: {}, Song Length: {}", song.getSongTitle(),
 					song.getAlbum(), song.getArtist(), song.getReleaseDate(), song.getSongLength());
+
+	        logger.info("App User Details:{}", user.toString());
+	           
+	    }
+		
+		for(UserPlaylist playlist : playlistRepo.findAll()) {
+		    logger.info("Playlist Details:{}",playlist.toString());
+
 		}
 	}
 
@@ -165,11 +189,21 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 		logger.info("Application Started successfully");
 	}
 
+
 	private float getPlayListLength(List<Song> songList) {
 		float time = 0;
 		for (Song song : songList) {
 			time += song.getSongLength();
 		}
 		return time;
+
+	public float getPlayListLength(List<Song> songs) {
+		float playlistLength=0;
+		for(Song song: songs) {
+			playlistLength+=song.getSongLength();
+		}
+		
+		return playlistLength;
+
 	}
 }

@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 //import jakarta.persistence.Table;
+import jakarta.persistence.OneToMany;
 
 
 @Entity
@@ -22,17 +23,37 @@ public class UserPlaylist {
     
 
 	private String playlistName;
+
 	private List<Song> songs;
     private float playlistLength;
     
     @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name="appuser") // use snake case to match common database conventions
     private AppUser user;
+
+    private float playlistLength;
+    
+   @ManyToOne(fetch= FetchType.EAGER)
+   @JoinColumn(name="appUser") // use snake case to match common database conventions
+   private AppUser user;
+   
+   @OneToMany(fetch= FetchType.EAGER)
+   @JoinColumn(name="song") // use snake case to match common database conventions
+   private List<Song> songs;
+
 	
 //	public UserPlaylist(){
 //	}
 	
+
 	public UserPlaylist(String playlistName,List<Song> songList, float playlistLength,AppUser user) {
+	public UserPlaylist(){
+		super();
+		
+	}
+	
+	public UserPlaylist(String playlistName,List<Song> songs, float playlistLength,AppUser user) {
+
 		super();
 		this.playlistName=playlistName;
 		this.songs=songList;
@@ -76,6 +97,15 @@ public class UserPlaylist {
 
 	public void setPlaylistLength(float playlistLength) {
 		this.playlistLength = playlistLength;
+	}
+	@Override
+	public String toString() {
+		String output="";
+		output+=" Playlist Name: "+getPlaylistName();
+		output+=" Owner: "+getUser().getName();
+		output+=" Playlist Length: "+getPlaylistLength()+"minutes";
+	
+		return output;
 	}
 	
 }

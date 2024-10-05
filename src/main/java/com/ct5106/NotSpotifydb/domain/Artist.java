@@ -85,12 +85,18 @@ public String getGenre() {
 public void setGenre(String genre) {
 	this.genre = genre;
 }
-//public Album getAlbum() {
-//	return album;
-//}
-//public void setAlbum(Album album) {
-//	this.album = album;
-//}
+
+@Override
+public String toString() {
+	String output="";
+	output+=" Artist Username: "+getArtistUserName();
+	output+=" Artist Real name: "+getRealName();
+	output+=" Artist Monthly Listners: "+getMonthlyListeners();
+	output+=" Artist Genre: "+getGenre();
+	output+=" Year Artist Joined: "+getYear();
+	
+	return output;
+}
 }
 
 
