@@ -9,12 +9,14 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
 public interface ArtistRepository extends CrudRepository<Artist, Long>{
-  List<Artist> findByArtistUserName(String artistUserName);
-  List<Artist> findByRealName(@Param("realName")String realName);
-  List<Artist> findByYearJoined(@Param("yearJoined")int yearJoined);
-  List<Artist> findByGenre(@Param("genre")String genre);
-  List<Artist> findByArtistUserNameOrGenre(String artistUserName, String genre);
-  List<Artist> findByArtistUserNameOrderByMonthlyListeners(String artistUserName);
+
+	
+  List<Artist> findByArtistUserName(String artistUserName);// Finds artists with an exact username match
+  List<Artist> findByRealName(@Param("realName")String realName);// Finds artists by their real name
+  List<Artist> findByYearJoined(@Param("yearJoined")int yearJoined); // Retrieves artists by the year they joined
+  List<Artist> findByGenre(@Param("genre")String genre); // Finds artists who belong to a specific genre
+  List<Artist> findByArtistUserNameOrGenre(String artistUserName, String genre); // Finds artists by username or genre, filtering by either parameter
+  List<Artist> findByArtistUserNameOrderByMonthlyListeners(String artistUserName); // Retrieves artists by username, ordering results by monthly listeners
   
   //getting artist from specific genres
   List<Artist> findByGenreContaining(@Param("genre") String genre);

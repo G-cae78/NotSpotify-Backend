@@ -1,5 +1,8 @@
 package com.ct5106.NotSpotifydb;
 
+import java.time.LocalDate;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +35,7 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 	private final SongRepository songRepo;
 	private static final Logger logger = LoggerFactory.getLogger(NotSpotifydbApplication.class);
 
+
 	public NotSpotifydbApplication(ArtistRepository artistRepo, AlbumRepository albumRepo,
 			UserPlaylistRepository playlistRepo, AppUserRepository userRepo, SongRepository songRepo) { // inject a working instance of the repo class
 		this.artistRepo = artistRepo;
@@ -39,6 +43,17 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 		this.playlistRepo = playlistRepo;
 		this.userRepo = userRepo;
 		this.songRepo = songRepo;
+
+	
+	
+	//Initialising entity repositories so we can store data in them
+	public NotSpotifydbApplication(ArtistRepository artistRepo, AlbumRepository albumRepo, UserPlaylistRepository playlistRepo, AppUserRepository userRepo, SongRepository songRepo) { // inject a working instance of the repo class
+		this.artistRepo=artistRepo;
+		this.albumRepo=albumRepo;
+		this.playlistRepo=playlistRepo;
+		this.userRepo=userRepo;
+		this.songRepo=songRepo;
+
 	}
 
 	@Override
@@ -110,6 +125,7 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 		AppUser joey = new AppUser("Joey$", "itsjoey123@gmail.com", "JoeDog", "17/07/2006");
 		userRepo.save(joey);
 
+
 		// Creating and saving UserPlaylist instances
 		//fill in songList 1 and 2 with songs to use in playlist constructor
 		songList1.add(geyser);
@@ -129,6 +145,38 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 		for (Album album : albumRepo.findAll()) {
 			logger.info("Songs: {}, Release date: {}, Total Plays: {}", album.getSongs(), album.getReleaseDate(),
 					album.getTotalPlays());
+
+		
+       //Creating two new Users
+ 		AppUser kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", LocalDate.of(2004, 5,16));
+     	userRepo.save(kelly);
+     	AppUser joey= new AppUser("Joey$","itsjoey123@gmail.com","JoeDog",LocalDate.of(2006, 7,17));
+     	userRepo.save(joey);
+     	
+     	List<Song> songList1 = new ArrayList<Song>();
+     	List<Song> songList2 = new ArrayList<Song>();
+		
+     // Creating and saving UserPlaylist instances
+     		songList1.add(geyser);
+     		songList1.add(mobTies);
+     		songList1.add(blind);
+     		
+     		songList2.add(loveStory);
+    		songList2.add(radioactive);
+    		songList2.add(comeTogether);
+
+     		UserPlaylist rock = new UserPlaylist("Rock mix for Monday's", songList1, getPlayListLength(songList1), kelly);
+     		playlistRepo.save(rock);
+     		UserPlaylist party = new UserPlaylist("Joey's Party mix", songList2, getPlayListLength(songList2), joey);
+     		playlistRepo.save(party);
+	    
+		
+     		/*
+     		 * Logging Info from all entity classes in console
+     		 */
+		for(Artist artist: artistRepo.findAll()) {
+			logger.info("Artist Details: {}", artist.toString());
+
 		}
 		
 		
@@ -181,7 +229,10 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 		logger.info("Application Started successfully");
 	}
 
-	//method to get the length of a playlist
+
+
+	//Method to calculate the length of a playlist by adding the length of each song in the song list
+
 	public float getPlayListLength(List<Song> songs) {
 		float playlistLength=0;
 		for(Song song: songs) {

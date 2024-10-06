@@ -1,4 +1,5 @@
 package com.ct5106.NotSpotifydb.domain;
+import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -19,8 +20,9 @@ public class AppUser {
 	private String name;
 	private String email;
 	private String username;
-	private String dob;
+	private LocalDate dob;
 	
+	//Mapping relationship between playlists and User 
 	@OneToMany(cascade= CascadeType.ALL, mappedBy="user")
 	private List<UserPlaylist> playlists;
 	
@@ -29,12 +31,14 @@ public class AppUser {
 	}
 	
 	
-	public AppUser(String name, String email, String username, String dob) {
+	public AppUser(String name, String email, String username, LocalDate dob) {
 		this.name=name;
 		this.email=email;
 		this.username=username;
 		this.dob=dob;
 	}
+	
+	//Getter and Setter Methods for fields
 
 	public Long getUserId() {
 		return userId;
@@ -76,13 +80,15 @@ public class AppUser {
 		this.username = username;
 	}
 	
-	public String getDOB() {
+	public LocalDate getDOB() {
 		return dob;
 	}
 	
-	public void setDOB(String dob) {
+	public void setDOB(LocalDate dob) {
 		this.dob=dob;
 	}
+	
+	//Modified toString method to print out user info
 	@Override
 	public String toString() {
 		String output="";

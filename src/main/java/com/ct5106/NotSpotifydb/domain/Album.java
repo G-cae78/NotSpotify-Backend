@@ -100,8 +100,9 @@ public class Album {
 	public void setTotalPlays(int totalPlays) {
 		this.totalPlays = totalPlays;
 	}
+	
+	//Modified toString method to print out Album info
 
-	//modified toString method
 	@Override
 	public String toString() {
 		String output="";
