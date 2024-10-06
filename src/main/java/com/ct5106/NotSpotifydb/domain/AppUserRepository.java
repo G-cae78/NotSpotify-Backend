@@ -7,15 +7,17 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface AppUserRepository extends CrudRepository<AppUser, Long> {
-    List<AppUser> findByName(String name);
-    List<AppUser> findByEmail(String email);
-    List<AppUser> findByUsername(String username);
-    List<AppUser> findByNameOrEmail(String name, String email);
-    List<AppUser> findByNameOrderByUserIdDesc(String name);
+    List<AppUser> findByName(String name); // Finds users by their name
+    List<AppUser> findByEmail(String email); // Finds users by their email address
+    List<AppUser> findByUsername(String username); // Finds users by their unique username
+    List<AppUser> findByNameOrEmail(String name, String email); // Finds users with either the specified name or email
+    List<AppUser> findByNameOrderByUserIdDesc(String name);// Finds users with the specified name, ordered by user ID in descending order
 
+ // Custom query to find users born within a specified date range
     @Query("select u from AppUser u where u.dob between :startDate and :endDate")
     List<AppUser> findByDobBetween(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
+    // Custom query to find users whose email contains a specific domain (e.g., '@gmail.com')
     @Query("select u from AppUser u where u.email like %:domain%")
     List<AppUser> findByEmailContaining(@Param("domain") String domain);
 }

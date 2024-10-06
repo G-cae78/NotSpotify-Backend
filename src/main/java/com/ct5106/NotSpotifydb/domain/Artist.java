@@ -21,11 +21,12 @@ private String artistUserName,realName,genre;
 private int yearJoined;
 private int monthlyListeners;
 
-
+//Mapping relationship between Artist and album entity
 @OneToMany(cascade= CascadeType.ALL, mappedBy="artist")
 //@JsonManagedReference 
 private List<Album> albums;
 
+//Mapping relationship between artist and song entities
 @OneToMany(cascade= CascadeType.ALL, mappedBy="artist")
 private List<Song> songs;
 
@@ -41,6 +42,8 @@ public Artist(String artistUserName,String realName, int yearJoined, int monthly
 	this.monthlyListeners=monthlyListeners;
 	this.genre=genre;
 }
+
+//Getter and Setter Methods to access and mutate fields in this entity class
 public List<Album> getAlbums(){
 	return albums;
 }
@@ -86,6 +89,8 @@ public String getGenre() {
 public void setGenre(String genre) {
 	this.genre = genre;
 }
+
+//Modified toString method to print artist information
 @Override
 public String toString() {
 	String output="";

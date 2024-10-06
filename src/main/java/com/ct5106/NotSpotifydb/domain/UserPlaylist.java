@@ -25,10 +25,12 @@ public class UserPlaylist {
 	private String playlistName;
     private float playlistLength;
     
+    //Mapping relationship between Playlist and AppUser
    @ManyToOne(fetch= FetchType.EAGER)
    @JoinColumn(name="appUser") // use snake case to match common database conventions
    private AppUser user;
    
+   //Mapping relationship between playlist and Songs
    @OneToMany(fetch= FetchType.EAGER)
    @JoinColumn(name="song") // use snake case to match common database conventions
    private List<Song> songs;
@@ -46,6 +48,7 @@ public class UserPlaylist {
 		this.playlistLength=playlistLength;
 		this.user=user;
 	}
+	//Getter and setter method to access and mutate data in fields
 	public Long getPlaylistId() {
 		return playlistId;
 	}
@@ -84,6 +87,8 @@ public class UserPlaylist {
 	public void setPlaylistLength(float playlistLength) {
 		this.playlistLength = playlistLength;
 	}
+	
+	//Modified toSting method to print out playlist information
 	@Override
 	public String toString() {
 		String output="";
