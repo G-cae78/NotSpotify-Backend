@@ -45,24 +45,16 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 	public void run(String... args) throws Exception {
 
 		// creating a list of songs
-		List<Song> songList = new ArrayList<Song>();
-
+		List<Song> songList1 = new ArrayList<Song>();
+		List<Song> songList2 = new ArrayList<Song>();
 		// Populating Artist database
-	    Artist drake = new Artist("Drake", "Aubrey Graham", 2005, 75000000, "Hip Pop");
-	    Artist mitski = new Artist("Mitski", "Mitsuki Laycock", 2006, 22000000, "Dance");
-	    Artist sza = new Artist("Sza", "Solána Imani Rowe", 2014, 40000000, "R&B");
-	    Artist taylorSwift = new Artist("Taylor Swift", "Taylor Alison Swift", 2006, 150000000, "Pop");
-	    Artist imagineDragons = new Artist("Imagine Dragons", "Imagine Dragons", 2012, 100000000, "Rock");
-	    Artist beatles = new Artist("The Beatles", "John, Paul, George, Ringo", 1960, 600000000, "Rock");
-
-	    // Saving Artist instances to artist repository
-	    artistRepo.save(drake);
-	    artistRepo.save(mitski);
-	    artistRepo.save(sza);
-	    artistRepo.save(taylorSwift);
-	    artistRepo.save(imagineDragons);
-	    artistRepo.save(beatles);
-
+	    Artist drake = new Artist("Drake", "Aubrey Graham", 2005, 75000000, "Hip Pop",null);
+	    Artist mitski = new Artist("Mitski", "Mitsuki Laycock", 2006, 22000000, "Dance",null);
+	    Artist sza = new Artist("Sza", "Solána Imani Rowe", 2014, 40000000, "R&B",null);
+	    Artist taylorSwift = new Artist("Taylor Swift", "Taylor Alison Swift", 2006, 150000000, "Pop",null);
+	    Artist imagineDragons = new Artist("Imagine Dragons", "Imagine Dragons", 2012, 100000000, "Rock",null);
+	    Artist beatles = new Artist("The Beatles", "John, Paul, George, Ringo", 1960, 600000000, "Rock",null);
+	 
 	    // Populating Album database
 	    Album scorpion = new Album("Scorpion","29th June, 2019", 1000000000, drake);
 	    Album beTheCowboy = new Album("Be The Cowboy","14th May, 2018", 469000, mitski);
@@ -77,6 +69,22 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 	    albumRepo.save(fearless);
 	    albumRepo.save(nightVisions);
 	    albumRepo.save(abbeyRoad);
+	    
+	    //add the albums to the artists
+	    drake.setAlbums(scorpion);
+	    mitski.setAlbums(beTheCowboy);
+	    sza.setAlbums(sos);
+	    taylorSwift.setAlbums(fearless);
+	    imagineDragons.setAlbums(nightVisions);
+	    beatles.setAlbums(abbeyRoad);
+	    
+	    // Saving Artist instances to artist repository now that all variables are set
+	    artistRepo.save(drake);
+	    artistRepo.save(mitski);
+	    artistRepo.save(sza);
+	    artistRepo.save(taylorSwift);
+	    artistRepo.save(imagineDragons);
+	    artistRepo.save(beatles);
 
 	    // Populating Song database
 
@@ -88,14 +96,6 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 	    Song comeTogether = new Song("Come Together", beatles, "26th September, 1969", abbeyRoad,2.9f);
 
 		// Saving Song instances to song repository
-
-	    Song geyser = new Song("Geyser", "14th May, 2018", beTheCowboy,3.1f);
-	    Song mobTies = new Song("Mob Ties", "29th June, 2019", scorpion,2.5f);
-	    Song blind = new Song("Blind", "9th December, 2022", sos,1.9f);
-	    Song loveStory = new Song("Love Story", "11th November, 2008", fearless,3f);
-	    Song radioactive = new Song("Radioactive", "4th September, 2012", nightVisions,2.6f);
-	    Song comeTogether = new Song("Come Together", "26th September, 1969", abbeyRoad,2.9f);
-
 
 	    songRepo.save(geyser);
 	    songRepo.save(mobTies);
@@ -111,13 +111,18 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 		userRepo.save(joey);
 
 		// Creating and saving UserPlaylist instances
-		songList.add(geyser);
-		songList.add(mobTies);
-		songList.add(blind);
+		//fill in songList 1 and 2 with songs to use in playlist constructor
+		songList1.add(geyser);
+		songList1.add(mobTies);
+		songList1.add(blind);
+		songList2.add(loveStory);
+		songList2.add(radioactive);
+		songList2.add(comeTogether);
+		
 
-		UserPlaylist rock = new UserPlaylist("Rock mix for Monday's", songList, getPlayListLength(songList), kelly);
+		UserPlaylist rock = new UserPlaylist("Rock mix for Monday's", songList1, getPlayListLength(songList1), kelly);
 		playlistRepo.save(rock);
-		UserPlaylist party = new UserPlaylist("Joey's Party mix", songList, getPlayListLength(songList), joey);
+		UserPlaylist party = new UserPlaylist("Joey's Party mix", songList2, getPlayListLength(songList2), joey);
 		playlistRepo.save(party);
 
 		// Logging Album info
@@ -125,40 +130,12 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 			logger.info("Songs: {}, Release date: {}, Total Plays: {}", album.getSongs(), album.getReleaseDate(),
 					album.getTotalPlays());
 		}
-
- 		AppUser kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", "16/05/2004");
-     	userRepo.save(kelly);
-     	AppUser joey= new AppUser("Joey$","itsjoey123@gmail.com","JoeDog","17/07/2006");
-     	userRepo.save(joey);
-     	
-     	List<Song> songList = new ArrayList<Song>();
 		
-     // Creating and saving UserPlaylist instances
-     		songList.add(geyser);
-     		songList.add(mobTies);
-     		songList.add(blind);
-
-     		UserPlaylist rock = new UserPlaylist("Rock mix for Monday's", songList, getPlayListLength(songList), kelly);
-     		playlistRepo.save(rock);
-     		UserPlaylist party = new UserPlaylist("Joey's Party mix", songList, getPlayListLength(songList), joey);
-     		playlistRepo.save(party);
-
-	    
 		
-		for(Artist artist: artistRepo.findAll()) {
-			logger.info("Artist Details: {}", artist.toString());
-		}
-		
-		for(Album album : albumRepo.findAll()) {
-		    logger.info("Album Details: {}",album.toString());
-		}
-		for(Song song: songRepo.findAll()) {
-			logger.info("Song Details: {} ", song.toString());
-		}
-
+		//Logging appUser info
 		for (AppUser user : userRepo.findAll()) {
 
-			logger.info("Name: {}, Username: {}, DOB: {}, Email: {}", user.getName(), user.getUsername(), user.getDOB(),
+			logger.info("Name: {}, Username: {}, DOB: {}, Email: {}", user.getName(), user.getName(), user.getDOB(),
 					user.getEmail());
 		}
 
@@ -173,15 +150,30 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 		for (Song song : songRepo.findAll()) {
 			logger.info("Song Name: {}, Album: {}, Artist: {}, Release Date: {}, Song Length: {}", song.getSongTitle(),
 					song.getAlbum(), song.getArtist(), song.getReleaseDate(), song.getSongLength());
-
-	        logger.info("App User Details:{}", user.toString());
 	           
 	    }
 		
-		for(UserPlaylist playlist : playlistRepo.findAll()) {
-		    logger.info("Playlist Details:{}",playlist.toString());
-
-		}
+		//Logging classes using to String method overriden in each method to display wanted info
+				//Logging Artist info
+				for(Artist artist: artistRepo.findAll()) {
+					logger.info("Artist Details: {}", artist.toString());
+				}
+				
+				//Logging album info
+				for(Album album : albumRepo.findAll()) {
+				    logger.info("Album Details: {}",album.toString());
+				}
+				
+				//Logging song info
+				for(Song song: songRepo.findAll()) {
+					logger.info("Song Details: {} ", song.toString());
+				}
+				
+				//Logging userplaylist 
+				for(UserPlaylist playlist : playlistRepo.findAll()) {
+				    logger.info("Playlist Details:{}",playlist.toString());
+				}
+		
 	}
 
 	public static void main(String[] args) {
@@ -189,14 +181,7 @@ public class NotSpotifydbApplication implements CommandLineRunner { // so you ca
 		logger.info("Application Started successfully");
 	}
 
-
-	private float getPlayListLength(List<Song> songList) {
-		float time = 0;
-		for (Song song : songList) {
-			time += song.getSongLength();
-		}
-		return time;
-
+	//method to get the length of a playlist
 	public float getPlayListLength(List<Song> songs) {
 		float playlistLength=0;
 		for(Song song: songs) {

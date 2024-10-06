@@ -21,38 +21,24 @@ public class UserPlaylist {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long playlistId;
     
-
 	private String playlistName;
-
-	private List<Song> songs;
     private float playlistLength;
     
     @ManyToOne(fetch= FetchType.EAGER)
     @JoinColumn(name="appuser") // use snake case to match common database conventions
     private AppUser user;
-
-    private float playlistLength;
-    
-   @ManyToOne(fetch= FetchType.EAGER)
-   @JoinColumn(name="appUser") // use snake case to match common database conventions
-   private AppUser user;
    
-   @OneToMany(fetch= FetchType.EAGER)
-   @JoinColumn(name="song") // use snake case to match common database conventions
-   private List<Song> songs;
+    @OneToMany(fetch= FetchType.EAGER)
+    @JoinColumn(name="song") // use snake case to match common database conventions
+    private List<Song> songs;
 
-	
-//	public UserPlaylist(){
-//	}
-	
 
-	public UserPlaylist(String playlistName,List<Song> songList, float playlistLength,AppUser user) {
 	public UserPlaylist(){
 		super();
 		
 	}
 	
-	public UserPlaylist(String playlistName,List<Song> songs, float playlistLength,AppUser user) {
+	public UserPlaylist(String playlistName,List<Song> songList, float playlistLength,AppUser user) {
 
 		super();
 		this.playlistName=playlistName;
@@ -60,6 +46,8 @@ public class UserPlaylist {
 		this.playlistLength=playlistLength;
 		this.user=user;
 	}
+	
+	//Getter and Setter methods for local variables
 	public Long getPlaylistId() {
 		return playlistId;
 	}
@@ -98,6 +86,8 @@ public class UserPlaylist {
 	public void setPlaylistLength(float playlistLength) {
 		this.playlistLength = playlistLength;
 	}
+	
+	//modified toString method
 	@Override
 	public String toString() {
 		String output="";

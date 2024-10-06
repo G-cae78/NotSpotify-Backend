@@ -21,4 +21,4 @@ public interface UserPlaylistRepository extends CrudRepository<UserPlaylist, Lon
 	@Query("select up from UserPlaylist up where up.playlistLength between ?1 and ?2")
 	List<UserPlaylist> findByPlaylistLengthBetween(@Param("low") float low, @Param("high") float high);
 
-	}
+}

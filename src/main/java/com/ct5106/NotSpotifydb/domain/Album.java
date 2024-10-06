@@ -24,7 +24,7 @@ public class Album {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long albumid;
-	private String releaseDate,genre;
+	private String releaseDate;
     
 	
 	@Column(name = "album_title")
@@ -41,13 +41,12 @@ public class Album {
    @OneToMany(cascade= CascadeType.ALL, mappedBy= "album", fetch=FetchType.EAGER)
    private List<Song> songs;
 
+   //Constructors
     public Album(){
-        
+        super();
     }
-        
  
     public Album(String albumTitle,String releaseDate, int totalPlays,Artist artist){
-    	super();
     	this.artist=artist;
         this.releaseDate = releaseDate; 
         this.totalPlays = totalPlays;
@@ -65,10 +64,9 @@ public class Album {
 	public void setSongs(List<Song> songs) {
 		this.songs = songs;
 	}
-	public List<Song> getSongs()
-	  {
+	public List<Song> getSongs(){
 		  return songs;
-	  }
+	 }
 
 	public Long getAlbumid() {
 		return albumid;
@@ -103,15 +101,7 @@ public class Album {
 		this.totalPlays = totalPlays;
 	}
 
-
-//	public void setGenre(String genre){
-//		this.genre = genre;
-//	}
-//
-//	public String getGenre() {
-//		return genre;
-//	}
-
+	//modified toString method
 	@Override
 	public String toString() {
 		String output="";
