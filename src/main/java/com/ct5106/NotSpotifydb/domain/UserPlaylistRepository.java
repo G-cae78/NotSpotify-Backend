@@ -19,18 +19,6 @@ public interface UserPlaylistRepository extends CrudRepository<UserPlaylist, Lon
     List<UserPlaylist> findByPlaylistNameStartsWith(@Param("playlistName") String playlistname);
 	
 	@Query("select up from UserPlaylist up where up.playlistLength between ?1 and ?2")
-	List<UserPlaylist> findByPlaylistLengthBetween(@Param("low") float low, @Param("high") float high)
-;
+	List<UserPlaylist> findByPlaylistLengthBetween(@Param("low") float low, @Param("high") float high);
 
-	List<UserPlaylist> findByPlaylistName (String playlistName);
-	List<UserPlaylist> findByAppUser (AppUser appUser);
-	List<UserPlaylist> findBySongs (List<Song> Songs);
-	List<UserPlaylist> findByPlaylistLength (float playlistLength);
-	List<UserPlaylist> findByAppUserOrPlaylistName(String playlistName, AppUser appUser);
-	
-	List<UserPlaylist> findByPlaylistNameContaining(@Param("playlistName") String playlistname);
-	
-	@Query("select up from UserPlaylist up where up.playlistLength between ?1 and ?2")
-	List<UserPlaylist> findByPlaylistLengthBetween(@Param("low") float low, @Param("high") float high)
-;
 	}
