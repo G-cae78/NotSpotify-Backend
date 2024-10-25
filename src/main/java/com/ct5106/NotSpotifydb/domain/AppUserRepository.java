@@ -2,14 +2,19 @@ package com.ct5106.NotSpotifydb.domain;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+//import org.springframework.stereotype.Repository;
 
+@RepositoryRestResource
 public interface AppUserRepository extends CrudRepository<AppUser, Long> {
     List<AppUser> findByName(String name); // Finds users by their name
     List<AppUser> findByEmail(String email); // Finds users by their email address
-    List<AppUser> findByUsername(String username); // Finds users by their unique username
+    Optional<AppUser> findByUsername(String username); // Finds users by their unique username
     List<AppUser> findByNameOrEmail(String name, String email); // Finds users with either the specified name or email
     List<AppUser> findByNameOrderByUserIdDesc(String name);// Finds users with the specified name, ordered by user ID in descending order
 
