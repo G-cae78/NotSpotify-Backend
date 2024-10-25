@@ -93,9 +93,9 @@ public class NotSpotifydbApplication implements CommandLineRunner{ //so you can 
 
 		
        //Creating two new Users
- 		AppUser kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", LocalDate.of(2004, 5,16));
+ 		AppUser kelly= new AppUser("Kelly", "Kellylin16@outlook.ie", "KellySlays123", LocalDate.of(2004, 5,16),"$2a$10$NVM0n8ElaRgg7zWO1CxUdei7vWoPg91Lz2aYavh9.f9q0e4bRadue");
      	userRepo.save(kelly);
-     	AppUser joey= new AppUser("Joey$","itsjoey123@gmail.com","JoeDog",LocalDate.of(2006, 7,17));
+     	AppUser joey= new AppUser("Joey$","itsjoey123@gmail.com","JoeDog",LocalDate.of(2006, 7,17),"$2a$10$8cjz47bjbR4Mn8GMg9IZx.vyjhLXR/SKKMSZ9.mP9vpMu0ssKi8GW");
      	userRepo.save(joey);
      	
      	List<Song> songList1 = new ArrayList<Song>();

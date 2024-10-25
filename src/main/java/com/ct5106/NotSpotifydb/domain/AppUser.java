@@ -21,6 +21,7 @@ public class AppUser {
 	private String email;
 	private String username;
 	private LocalDate dob;
+	private String password;
 	
 	//Mapping relationship between playlists and User 
 	@OneToMany(cascade= CascadeType.ALL, mappedBy="user")
@@ -31,11 +32,12 @@ public class AppUser {
 	}
 	
 	
-	public AppUser(String name, String email, String username, LocalDate dob) {
+	public AppUser(String name, String email, String username, LocalDate dob,String password) {
 		this.name=name;
 		this.email=email;
 		this.username=username;
 		this.dob=dob;
+		this.password=password;
 	}
 	
 	//Getter and Setter Methods for fields
@@ -88,6 +90,16 @@ public class AppUser {
 		this.dob=dob;
 	}
 	
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
 	//Modified toString method to print out user info
 	@Override
 	public String toString() {
